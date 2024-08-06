@@ -30,16 +30,18 @@ namespace InterViewProject.Data
         {
             modelBuilder.Entity<FamilyEntities>(entity =>
             {
+                entity.HasKey(e => e.FamilyId);
+
                 entity.ToTable("Family");
 
+                entity.Property(e => e.FamilySex)
+                    .HasColumnName("FamilySex")
+                    .HasMaxLength(256);
                 entity.Property(e => e.FamilyId)
                     .HasColumnName("FamilyId")
                     .HasMaxLength(256);
                 entity.Property(e => e.FamilyName)
                     .HasColumnName("FamilyName")
-                    .HasMaxLength(256);
-                entity.Property(e => e.FamilySex)
-                    .HasColumnName("FamilySex")
                     .HasMaxLength(256);
                 entity.Property(e => e.BirthDate)
                     .HasColumnName("BirthDate")

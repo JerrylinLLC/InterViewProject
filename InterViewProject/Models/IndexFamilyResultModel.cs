@@ -1,11 +1,11 @@
-﻿namespace InterViewProject.Data.Entities
+﻿namespace InterViewProject.Models
 {
-    public partial class FamilyEntities
+    public class IndexFamilyResultModel
     {
         public string? FamilyId { get; set; }
         public string? FamilyName { get; set; }
         public string? FamilySex { get; set; }
         public DateTime BirthDate { get; set; }
-        public int? PhoneNumber { get; set; }        
+        public int? PhoneNumber { get; set; }
     }
 }

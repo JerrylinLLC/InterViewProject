@@ -1,3 +1,30 @@
-﻿@page
+﻿@model InterViewProject.Models.ViewModels.IndexFamilyViewModel
 @{
+    ViewData["Title"] = "Home page";
 }
+<link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
+<div class="familyTable subtitle">
+    <div class="familyTable_familyName">姓名</div>
+    <div class="familyTable_familySex">性別</div>
+    <div class="familyTable_phoneNumber">電話</div>
+</div>
+<div>
+    @if (Model != null)
+    {
+        foreach (var data in Model.IndexFamilyResultModelList)
+        {
+            <div class="familyTable">
+                <div class="familyTable_familyName">@data.FamilyName</div>
+                <div class="familyTable_familySex">@data.FamilySex</div>
+                @if (data.PhoneNumber == null)
+                {
+                    <div class="familyTable_phoneNumber">NA</div>
+                }
+                else
+                {
+                    <div class="familyTable_phoneNumber">@data.PhoneNumber</div>
+                }
+            </div>
+        }
+    }
+</div>
