@@ -7,6 +7,7 @@
     <div class="familyTable_familyName">姓名</div>
     <div class="familyTable_familySex">性別</div>
     <div class="familyTable_phoneNumber">電話</div>
+    <div class="familyTable_birthday">生日</div>
 </div>
 <div>
     @if (Model != null)
@@ -24,6 +25,7 @@
                 {
                     <div class="familyTable_phoneNumber">@data.PhoneNumber</div>
                 }
+                <div class="familyTable_birthday">@data.BirthDate</div>
             </div>
         }
     }

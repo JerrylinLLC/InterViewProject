@@ -32,15 +32,18 @@
     }
 
 .familyTable_familyName {
-    width: 33.3%;
+    width: 25%;
 }
 
 .familyTable_familySex {
-    width: 33.3%;
+    width: 25%;
 }
 
 .familyTable_phoneNumber {
-    width: 33.3%;
+    width: 25%;
+}
+.familyTable_birthday {
+    width: 25%;
 }
 
 
