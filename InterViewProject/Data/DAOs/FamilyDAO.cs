@@ -32,7 +32,7 @@ namespace InterViewProject.Data.DAOs
             {
                 ctx.FamilyEntities.Add(new FamilyEntities
                 {
-                    FamilyId = new Guid().ToString(),
+                    FamilyId = Guid.NewGuid().ToString(),
                     FamilyName = familyQueryModel.FamilyName,
                     FamilySex = familyQueryModel.FamilySex,
                     BirthDate = familyQueryModel.BirthDate,
