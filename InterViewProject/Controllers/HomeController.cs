@@ -68,7 +68,7 @@ namespace InterViewProject.Controllers
             FamilyDAO familyDAO = new FamilyDAO();
             try
             {
-                var insertResult=familyDAO.InsertFamily(familyQueryModel);
+                var insertResult = familyDAO.InsertFamily(familyQueryModel);
                 if (insertResult == 0)
                 {
                     resultModel.IsOK = false;
@@ -80,12 +80,41 @@ namespace InterViewProject.Controllers
                     resultModel.Message = "";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 resultModel.IsOK = false;
-                resultModel.Message = "Insert失敗";                
+                resultModel.Message = "Insert失敗";
             }
             return new JsonResult(resultModel);
         }
+
+        //[HttpPut]
+        //[Route("api/UpdateFamily")]
+        //[Produces("application/json")]
+        //public IActionResult UpdateFamily([FromRoute] string name, [FromBody] FamilyQueryModel familyQueryModel)
+        //{
+        //    ResultModel resultModel = new ResultModel();
+        //    FamilyDAO familyDAO = new FamilyDAO();
+        //    try
+        //    {
+        //        var insertResult = familyDAO.UpdateFamily(name,familyQueryModel);
+        //        if (insertResult == 0)
+        //        {
+        //            resultModel.IsOK = false;
+        //            resultModel.Message = "Update失敗";
+        //        }
+        //        else
+        //        {
+        //            resultModel.IsOK = true;
+        //            resultModel.Message = "";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        resultModel.IsOK = false;
+        //        resultModel.Message = "Update失敗";
+        //    }
+        //    return new JsonResult(resultModel);
+        //}
     }
 }
