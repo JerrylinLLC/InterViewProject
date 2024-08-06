@@ -13,14 +13,14 @@ namespace InterViewProject.Data.DAOs
                 if (string.IsNullOrEmpty(familySex))
                 {
                     var result = (from vb in ctx.FamilyEntities
-                                  select vb).OrderByDescending(t => t.BirthDate);
+                                  select vb).OrderBy(t => t.BirthDate);
                     return result.ToList();
                 }
                 else
                 {
                     var result = (from vb in ctx.FamilyEntities
                                   where vb.FamilySex == familySex
-                                  select vb).OrderByDescending(t => t.BirthDate);
+                                  select vb).OrderBy(t => t.BirthDate);
                     return result.ToList();
                 }
             }
