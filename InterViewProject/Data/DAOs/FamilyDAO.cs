@@ -41,5 +41,28 @@ namespace InterViewProject.Data.DAOs
                 return resultCount = ctx.SaveChanges();
             }
         }
+        public int UpdateFamily(string name,FamilyQueryModel familyQueryModel)
+        {
+            int resultCount = 0;
+            using (AppDbContext ctx = new AppDbContext())
+            {
+                ctx.FamilyEntities.Add(new FamilyEntities
+                {
+                    FamilyId = Guid.NewGuid().ToString(),
+                    FamilyName = familyQueryModel.FamilyName,
+                    FamilySex = familyQueryModel.FamilySex,
+                    BirthDate = familyQueryModel.BirthDate,
+                    PhoneNumber = familyQueryModel.PhoneNumber,
+                });
+
+                var result = (from vb in ctx.FamilyEntities
+                              where vb.FamilyName == name
+                              select vb);
+                result.FirstOrDefault().FamilyName = familyQueryModel.FamilyName;
+
+                ctx.SaveChanges();
+                return resultCount = ctx.SaveChanges();
+            }
+        }
     }
 }
