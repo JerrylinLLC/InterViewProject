@@ -3,7 +3,11 @@ using InterViewProject.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.UseMemberCasing();
+                });
 builder.Services.AddScoped<AppDbContext>();
 
 var app = builder.Build();

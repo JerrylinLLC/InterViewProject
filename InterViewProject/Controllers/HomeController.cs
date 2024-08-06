@@ -48,5 +48,15 @@ namespace InterViewProject.Controllers
                 return IndexFamilyResultModelList;
             }            
         }
+        [HttpGet]
+        [Route("api/GetFamilys")]
+        [Produces("application/json")]
+        public IActionResult GetFamilys(string sex)
+        {
+            FamilyDAO familyDAO = new FamilyDAO();
+            var result = familyDAO.GetFamilysBySex(sex);
+            List<IndexFamilyResultModel> indexFamilysViewModel = GetFamilyResultToViewModel(result);
+            return new JsonResult(indexFamilysViewModel);
+        }
     }
 }
