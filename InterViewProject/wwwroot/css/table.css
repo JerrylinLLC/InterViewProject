@@ -1,0 +1,49 @@
+.familyTable {
+    border: 1px solid #eee;
+    display: flex;
+    width: 100%;
+    font-size: 15px;
+    align-items: stretch;
+}
+
+    .familyTable > div {
+        padding: 8px 4px;
+        display: flex;
+        justify-content: center;
+        word-break: break-all;
+        align-items: center;
+        border: solid black;
+    }
+
+        .familyTable > div + div {
+            border: solid black;
+            border-left: 1px solid #eee;
+        }
+
+    .familyTable.subtitle {
+        background-color: #eee;
+        color: #777;
+        font-size: 12px;
+    }
+
+    .familyTable.invalid {
+        color: #aaa;
+        background-color: #f4f4f4;
+    }
+
+.familyTable_familyName {
+    width: 33.3%;
+}
+
+.familyTable_familySex {
+    width: 33.3%;
+}
+
+.familyTable_phoneNumber {
+    width: 33.3%;
+}
+
+
+.familyTable + .familyTable {
+    border-top: 0;
+}

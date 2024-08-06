@@ -1,5 +1,6 @@
 ﻿using InterViewProject.Data.DAOs;
 using InterViewProject.Data.Entities;
+using InterViewProject.Models;
 using InterViewProject.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,23 +12,25 @@ namespace InterViewProject.Controllers
         {
             FamilyDAO familyDAO = new FamilyDAO();
             var result=familyDAO.GetFamilysBySex(sex);
-            List<IndexFamilyViewModel> indexFamilysViewModel = GetFamilyResultToViewModel(result);
-            return View(indexFamilysViewModel);
+            List<IndexFamilyResultModel> indexFamilysViewModel = GetFamilyResultToViewModel(result);
+            IndexFamilyViewModel indexFamilyViewModel=new IndexFamilyViewModel();
+            indexFamilyViewModel.IndexFamilyResultModelList = indexFamilysViewModel;
+            return View(indexFamilyViewModel);
         }
-        public List<IndexFamilyViewModel> GetFamilyResultToViewModel(List<FamilyEntities> familyEntities)
+        public List<IndexFamilyResultModel> GetFamilyResultToViewModel(List<FamilyEntities> familyEntities)
         {
-            List<IndexFamilyViewModel> indexFamilysViewModel= new List<IndexFamilyViewModel>();
+            List<IndexFamilyResultModel> IndexFamilyResultModelList = new List<IndexFamilyResultModel>();
             try
             {
                 if (familyEntities.Count == 0)
                 {
-                    return indexFamilysViewModel;
+                    return IndexFamilyResultModelList;
                 }
                 else
                 {
                     foreach (FamilyEntities familyEntity in familyEntities)
                     {
-                        IndexFamilyViewModel indexFamilyViewModel = new IndexFamilyViewModel()
+                        IndexFamilyResultModel indexFamilyViewModel = new IndexFamilyResultModel()
                         {
                             FamilyId = familyEntity.FamilyId,
                             FamilyName = familyEntity.FamilyName,
@@ -35,14 +38,14 @@ namespace InterViewProject.Controllers
                             BirthDate = familyEntity.BirthDate,
                             PhoneNumber = familyEntity.PhoneNumber
                         };
-                        indexFamilysViewModel.Add(indexFamilyViewModel);
+                        IndexFamilyResultModelList.Add(indexFamilyViewModel);
                     }
-                    return indexFamilysViewModel;
+                    return IndexFamilyResultModelList;
                 }
             }
             catch (Exception ex)
             {
-                return indexFamilysViewModel;
+                return IndexFamilyResultModelList;
             }            
         }
     }
