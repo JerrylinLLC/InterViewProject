@@ -11,9 +11,9 @@ namespace InterViewProject.Controllers
         public IActionResult Index(string sex)
         {
             FamilyDAO familyDAO = new FamilyDAO();
-            var result=familyDAO.GetFamilysBySex(sex);
+            var result = familyDAO.GetFamilysBySex(sex);
             List<IndexFamilyResultModel> indexFamilysViewModel = GetFamilyResultToViewModel(result);
-            IndexFamilyViewModel indexFamilyViewModel=new IndexFamilyViewModel();
+            IndexFamilyViewModel indexFamilyViewModel = new IndexFamilyViewModel();
             indexFamilyViewModel.IndexFamilyResultModelList = indexFamilysViewModel;
             return View(indexFamilyViewModel);
         }
@@ -46,7 +46,7 @@ namespace InterViewProject.Controllers
             catch (Exception ex)
             {
                 return IndexFamilyResultModelList;
-            }            
+            }
         }
         [HttpGet]
         [Route("api/GetFamilys")]
@@ -57,6 +57,35 @@ namespace InterViewProject.Controllers
             var result = familyDAO.GetFamilysBySex(sex);
             List<IndexFamilyResultModel> indexFamilysViewModel = GetFamilyResultToViewModel(result);
             return new JsonResult(indexFamilysViewModel);
+        }
+
+        [HttpPost]
+        [Route("api/PostFamily")]
+        [Produces("application/json")]
+        public IActionResult PostFamily([FromBody] FamilyQueryModel familyQueryModel)
+        {
+            ResultModel resultModel = new ResultModel();
+            FamilyDAO familyDAO = new FamilyDAO();
+            try
+            {
+                var insertResult=familyDAO.InsertFamily(familyQueryModel);
+                if (insertResult == 0)
+                {
+                    resultModel.IsOK = false;
+                    resultModel.Message = "Insert失敗";
+                }
+                else
+                {
+                    resultModel.IsOK = true;
+                    resultModel.Message = "";
+                }
+            }
+            catch(Exception ex)
+            {
+                resultModel.IsOK = false;
+                resultModel.Message = "Insert失敗";                
+            }
+            return new JsonResult(resultModel);
         }
     }
 }
